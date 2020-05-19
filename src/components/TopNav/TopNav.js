@@ -10,7 +10,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import { ReactComponent as Logo } from '../../assest/1.svg';
-import {LogoContainer} from './TopNav.style';
+import { ReactComponent as Logo2 } from '../../assest/2.svg';
+import { LogoContainer } from './TopNav.style';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -32,19 +33,20 @@ const theme = createMuiTheme({
 });
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  
-   
+
+
   },
-  
+
   menuButton: {
     marginRight: theme.spacing(2),
-    
-  
+
+
   },
-  
+
   title: {
     flexGrow: 1,
     display: 'none',
@@ -77,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: 'inherit',
-    height : 100
+    height: 100
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -117,94 +119,111 @@ export default function TopNav() {
 
 
   return (
-   
+
     <MuiThemeProvider theme={theme}>
-   
-   <div className={classes.root}>
-   
-   <FormGroup style={{backgroundColor : '#2f73fa'}}>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch"  />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
-   
-   
-      <AppBar position="static">
-   
 
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-
-      <LogoContainer>
-      <Logo/>
-    </LogoContainer>         
-       
-    {auth && (
-      <div style={{paddingLeft : 100}}>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
+      <div className={classes.root}>
 
 
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+
+
+        <FormGroup style={{ backgroundColor: '#2f73fa' }}>
+          <FormControlLabel
+            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+            label={auth ? 'Logout' : 'Login'}
+          />
+        </FormGroup>
+
+
+        <AppBar position="static">
+
+
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+
+              <LogoContainer>
+                <Logo />
+              </LogoContainer>
+
+              {auth && (
+                <div style={{ paddingLeft: 100 }}>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+
+
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                  </Menu>
+                </div>
+              )}
+
+
+            </IconButton>
+            <Typography className={classes.title} variant="h6" noWrap>
+
+
+
+            </Typography>
+
+
+
+            <div className={classes.search} style={{ color: '#000000' }}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
+                inputProps={{ 'aria-label': 'search' }}
+              />
             </div>
- )}
-       
-       
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+            <LogoContainer>
+              <Logo2 />
+            </LogoContainer>
          
-    
+          
 
-          </Typography>
-          <div className={classes.search} style={{color : '#000000'}}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-              
-            
-              </MuiThemeProvider>
- 
+          </Toolbar>
+         
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" style={{marginLeft : 1000}}>
+            <MenuIcon /> 
+          </IconButton>
+        
+        </AppBar>
+      </div>
+
+
+    </MuiThemeProvider>
+
   );
 }
